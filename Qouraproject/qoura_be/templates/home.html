@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <!-- Add Bootstrap CSS CDN link or include local Bootstrap CSS file -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Font Awesome CSS CDN link or include local Font Awesome CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Home Page</h1>
+        <p>Welcome, {{ user.username }}</p>
+         <form method="POST" action="{% url 'logout' %}" class="mb-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Logout</button>
+    </form>
+
+
+        <!-- Search Bar -->
+        <form method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" name="q" placeholder="Search for a topic...">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- List of Questions -->
+       <!-- List of Questions -->
+{% if questions %}
+<ul class="list-group">
+    {% for question in questions %}
+    <li class="list-group-item">
+        <div class="mb-2">
+            <strong>Topic: {{ question.topics.first.topic_name }}</strong>
+            <span class="text-muted">Posted by: {{ question.user.username }}</span>
+        </div>
+        <h3>{{ question.question_statement }}</h3>
+        <div>
+            <button
+                type="button"
+                class="btn btn-outline-success like-btn"
+                data-id="{{ question.pk }}"
+                {% if question.user_reaction and question.user_reaction.reaction_type == 1 %}
+                disabled
+                {% endif %}
+            >
+                <i class="fas fa-thumbs-up"></i> Like
+                <span class="like-count">{{ question.like_count }}</span>
+            </button>
+            <button
+                type="button"
+                class="btn btn-outline-danger dislike-btn"
+                data-id="{{ question.pk }}"
+                {% if question.user_reaction and question.user_reaction.reaction_type == -1 %}
+                disabled
+                {% endif %}
+            >
+                <i class="fas fa-thumbs-down"></i> Dislike
+                <span class="dislike-count">{{ question.dislike_count }}</span>
+            </button>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No questions found.</p>
+{% endif %}
+    </div>
+
+    <!-- Add Bootstrap JS CDN link or include local Bootstrap JS file -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add Font Awesome JS CDN link or include local Font Awesome JS file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <!-- Add jQuery CDN link or include local jQuery file -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Add the following script at the end of the body section -->
+<script>
+    // Function to handle like question
+   // Function to handle like question
+$(".like-btn").click(function () {
+    var questionId = $(this).data("id");
+    $.ajax({
+        url: "{% url 'like_question' %}",
+        method: "POST",
+        data: { "question_id": questionId, "type": 1 },  // Pass 1 for "like"
+        dataType: "json",
+        success: function (data) {
+            $(".like-count[data-id=" + questionId + "]").text(data.like_count);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+
+// Function to handle dislike question
+$(".dislike-btn").click(function () {
+    var questionId = $(this).data("id");
+    $.ajax({
+        url: "{% url 'like_question' %}",
+        method: "POST",
+        data: { "question_id": questionId, "type": -1 },  // Pass -1 for "dislike"
+        dataType: "json",
+        success: function (data) {
+            $(".dislike-count[data-id=" + questionId + "]").text(data.dislike_count);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+
+</script>
+</body>
+</html>

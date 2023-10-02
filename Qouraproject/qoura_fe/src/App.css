@@ -1,0 +1,252 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+body {
+	background-image: none;
+	background-color: #F1F2F2;
+}
+body.add {
+	background-image: none;
+	background-color: #F1F2F2;
+}
+
+.nav-link {
+	font-weight: bold;
+	font-size: 12px;
+	height: 50px;
+	padding: 15px 10px 0px 10px;
+	background-color: black;
+	margin-left: 10px;
+	color: white;
+}
+
+.nav-link:hover {
+	color: white;
+	background-color: #b92b27;
+}
+.nav-link:hover {
+	color: white;
+	background-color: #b92b27;
+}
+
+.nav-link-logout {
+	font-weight: bold;
+	font-size: 12px;
+	height: 50px;
+	padding: 15px 10px 0px 10px;
+	border: 2px solid #b92b27;
+	background-color: white;
+	color: #b92b27;
+	margin-left: 10px;
+}
+
+.nav-link-logout:hover {
+	color: white;
+	background-color: #b92b27;
+	cursor: pointer;
+}
+
+
+.logo_fill {
+	fill: #b92b27;
+}
+
+.btn_disabled {
+    pointer-events: none; /* Disable pointer events to make the button unclickable */
+    opacity: 0.65; /* Reduce the opacity to indicate the button is disabled */
+  }
+
+#root {
+	/* max-width: 1280px; */
+	/* margin: 0 auto; */
+	/* padding: 2rem; */
+	/* text-align: center; */
+}
+
+.margin-top{
+	margin-top: 5%;
+}
+.logo {
+	height: 6em;
+	padding: 1.5em;
+	will-change: filter;
+	transition: filter 300ms;
+}
+.logo:hover {
+	filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+	filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+
+
+@keyframes logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	a:nth-of-type(2) .logo {
+		animation: logo-spin infinite 20s linear;
+	}
+}
+
+.card {
+	padding: 2em;
+}
+
+.read-the-docs {
+	color: #888;
+}
+
+.signup-link {
+	color: black;
+	font-weight: bold;
+	text-decoration: none !important;
+}
+.signup-link:hover {
+	cursor: pointer;
+}
+
+.error-message {
+    color: red;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it's above other content */
+}
+
+/* Customize spinner appearance if needed */
+.spinner-border {
+  color: #fff; /* Spinner color */
+}
+
+.link-text {
+	text-decoration: none;
+	color: black;
+}
+
+.link-text:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.pagination-container {
+	display: flex;
+	list-style-type: none;
+}
+
+.pagination-container .pagination-item {
+	padding: 0 12px;
+	height: 32px;
+	text-align: center;
+	margin: auto 4px;
+	color: rgba(0, 0, 0, 0.87);
+	display: flex;
+	box-sizing: border-box;
+	align-items: center;
+	letter-spacing: 0.01071em;
+	border-radius: 16px;
+	line-height: 1.43;
+	font-size: 13px;
+	min-width: 32px;
+}
+
+.pagination-container .pagination-item.dots:hover {
+	background-color: transparent;
+	cursor: default;
+}
+
+.pagination-container .pagination-item:hover {
+	background-color: rgba(0, 0, 0, 0.04);
+	cursor: pointer;
+}
+
+.pagination-container .pagination-item.selected {
+	background-color: rgba(0, 0, 0, 0.08);
+}
+
+.pagination-container .pagination-item .arrow::before {
+	position: relative;
+	content: "";
+	display: inline-block;
+	width: 0.4em;
+	height: 0.4em;
+	border-right: 0.12em solid rgba(0, 0, 0, 0.87);
+	border-top: 0.12em solid rgba(0, 0, 0, 0.87);
+}
+
+.pagination-container .pagination-item .arrow.left {
+	transform: rotate(-135deg) translate(-50%);
+}
+
+.pagination-container .pagination-item .arrow.right {
+	transform: rotate(45deg);
+}
+
+.pagination-container .pagination-item.disabled {
+	pointer-events: none;
+}
+
+.pagination-container .pagination-item.disabled .arrow::before {
+	border-right: 0.12em solid rgba(0, 0, 0, 0.43);
+	border-top: 0.12em solid rgba(0, 0, 0, 0.43);
+}
+
+.pagination-container .pagination-item.disabled:hover {
+	background-color: transparent;
+	cursor: default;
+}

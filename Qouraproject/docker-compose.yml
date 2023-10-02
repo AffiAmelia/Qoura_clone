@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./qoura_be
+    command: gunicorn qoura_be.wsgi --bind 0.0.0.0:8000
+    ports:
+      - 8000:8000
+  frontend:
+    build:  
+      context: ./qoura_fe
+    volumes:
+      - react_build:/build
+    ports:
+      - 3000:3000
+volumes:
+  react_build:
